@@ -101,7 +101,11 @@ const addressPropertyDisplayValues: Record<
   (value: any, data: any, options: { type: TAddressType }) => React.ReactNode
 > = {
   address: (value, data, options: { type: TAddressType }) =>  {
-    return <Text size="small">{value}</Text>
+    return (
+      <div>
+        <Address address={value} isShort={false} />
+      </div>
+    )
   },
   value: (value) => <TokenValue value={value} />,
   creatorAddress: (value) => <Address address={value} />,
