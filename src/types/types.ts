@@ -1,0 +1,1 @@
+export type TAddressType = "address" | "contract" | "erc20" | "erc721"| "erc1155" ;
