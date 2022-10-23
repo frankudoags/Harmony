@@ -148,7 +148,7 @@ function getColumns() {
         </Text>
       ),
       render: (data: RelatedTransactionByType) => (
-        <a href={`https://explorer.harmony.one/tx/${data.hash}`} target="_blank" ref="noreferrer noopener" className="hover:underline hover:font-medium hover:text-2xl transition-all duration-200 ease-in-out">
+        <a href={`https://explorer.harmony.one/tx/${data.hash}`} target="_blank" rel="noreferrer"  className="hover:underline hover:font-medium hover:text-2xl transition-all duration-200 ease-in-out">
         <Text size="small">
           {`${data?.hash?.slice(0, 15)}`}
         </Text>

@@ -4,8 +4,9 @@ import { Address, formatNumber, TokenValue } from "../ui";
 import { AddressDetails } from "../types";
 import { TokensInfo } from "./TokenInfo";
 import { Erc20, useERC20Pool } from "../hooks/ERC20_Pool";
-import {ERC721, useERC721Pool} from "../hooks/ERC721.Pool";
+import { ERC721, useERC721Pool } from "../hooks/ERC721.Pool";
 import { ERC1155, useERC1155Pool } from "../hooks/ERC1155.Pool";
+import { type } from "os";
 
 interface AddressDetailsProps {
   address: string;
@@ -100,10 +101,17 @@ const addressPropertyDisplayValues: Record<
   string,
   (value: any, data: any, options: { type: TAddressType }) => React.ReactNode
 > = {
-  address: (value, data, options: { type: TAddressType }) =>  {
+  address: (value, data, options: { type: TAddressType }) => {
     return (
-      <div>
+      <div className="flex items-center gap-6">
         <Address address={value} isShort={false} />
+        <div className="font-bold">
+          {options.type === "erc20" && <div>HRC20</div>}
+          {options.type === "erc721" && <div>HRC721</div>}
+          {options.type === "erc1155" && <div>HRC1155</div>}
+          {options.type === "contract" && <div>CONTRACT</div>}
+          {options.type === "address" && <div>EOA</div>}
+        </div>
       </div>
     )
   },
@@ -152,7 +160,7 @@ export function getType(contracts: AddressDetails, erc20Token: Erc20, erc721Toke
   if (!!contracts && !!erc721Token) {
     return "erc721";
   }
-  if(!!contracts && !!erc1155Token) {
+  if (!!contracts && !!erc1155Token) {
     return "erc1155";
   }
   if (!!contracts) {
